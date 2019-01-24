@@ -32,24 +32,14 @@ public class Program {
             System.out.print("Data de Saida(dd/mm/yyy):");
             Date attSaida = sdf.parse(sc.next());
 
-            Date now = new Date();
-            if(attEntrada.before(now) || attSaida.before(now)){
-                System.out.println("Erro na reserva: Datas de atualização tem que ser datas futuras");
-            }else if(!attSaida.after(attEntrada)){
-                System.out.println("Erro na reserva: Data de saida tem que ser depois da data de entrada.");
+            String error = reserva.atualizarDatas(attEntrada,attSaida);
+            if(error != null){
+                System.out.println(error);
             }else{
-                reserva.atualizarDatas(attEntrada,attSaida);
                 System.out.println(reserva);
             }
 
-
         }
-
-
-
-
-
-
 
         sc.close();
     }
